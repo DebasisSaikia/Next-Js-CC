@@ -2,7 +2,17 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+export function getServerSideProps() {
+  console.log(process.env.SECRET_VARIABLE)
+  return {
+    props: {}
+  }
+}
+
 export default function Home() {
+
+  console.log(process.env.SECRET_VARIABLE)
+  console.log(process.env.NEXT_PUBLIC_KEY)
   return (
     <div className={styles.container}>
       <Head>
