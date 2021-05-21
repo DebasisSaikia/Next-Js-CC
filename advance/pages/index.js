@@ -9,10 +9,13 @@ export function getServerSideProps() {
   }
 }
 
+// .env.local ,.env.development ,.env.production
+
 export default function Home() {
 
   console.log(process.env.SECRET_VARIABLE)
   console.log(process.env.NEXT_PUBLIC_KEY)
+
   return (
     <div className={styles.container}>
       <Head>
