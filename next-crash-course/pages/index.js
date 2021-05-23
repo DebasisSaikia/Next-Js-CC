@@ -28,17 +28,31 @@ const Dummy_datas = [
   },
 ];
 
-const Home = () => {
-  const [loadedMeetups, setLoadedMeetups] = useState([]);
-
-  useEffect(() => {
-    setLoadedMeetups(Dummy_datas);
-  }, []);
+const Home = (props) => {
   return (
     <>
-      <MeetupList meetups={loadedMeetups} />
+      <MeetupList meetups={props.meetups} />
     </>
   );
 };
+
+export async function getStaticProps() {
+  return {
+    props: {
+      meetups: Dummy_datas,
+    },
+    revalidate: 10,
+  };
+}
+
+// export async function getServerSideProps(context) {
+//   const req = context.req;
+//   const res = context.res;
+//   return {
+//     props: {
+//       meetups: Dummy_datas,
+//     },
+//   };
+// }
 
 export default Home;
