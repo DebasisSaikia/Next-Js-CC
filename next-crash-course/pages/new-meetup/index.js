@@ -1,9 +1,10 @@
-const index = () => {
-  return (
-    <div>
-      <h1>NEw meetup</h1>
-    </div>
-  );
+import NewMeetupForm from "../../components/meetups/NewMeetupForm";
+
+const NewMeetUpPage = () => {
+  const addMeetupHandler = (enterMeetupData) => {
+    console.log(enterMeetupData);
+  };
+  return <NewMeetupForm onAddMeetup={addMeetupHandler} />;
 };
 
-export default index;
+export default NewMeetUpPage;

@@ -1,0 +1,12 @@
+.detail {
+    text-align: center;
+}
+
+.detail img {
+    width: 100%;
+}
+
+.detail img:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
