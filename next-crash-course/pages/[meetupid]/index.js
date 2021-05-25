@@ -1,14 +1,14 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import MeetupDetail from "../../components/meetups/MeetupDetail";
 
-const MeetupDetails = () => {
+const MeetupDetails = (props) => {
   return (
     <>
       <MeetupDetail
-        image="https://images.unsplash.com/photo-1603868947885-7e39010d088c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
-        title="First meetup"
-        address="Meetup city"
-        description="Description of meetup"
+        image={props.meetupData.image}
+        title={props.meetupData.title}
+        address={props.meetupData.address}
+        description={props.meetupData.description}
       />
     </>
   );
@@ -38,18 +38,19 @@ export async function getStaticProps(context) {
   );
   const db = client.db();
   const meetupsCollection = db.collection("meetups");
-  const selectedMeetup = await meetupsCollection.findOne({ _id: meetupid });
+  const selectedMeetup = await meetupsCollection.findOne({
+    _id: ObjectId(meetupid),
+  });
   client.close();
 
   return {
     props: {
       meetupData: {
-        id: meetupid,
-        image:
-          "https://images.unsplash.com/photo-1603868947885-7e39010d088c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
-        title: "First meetup",
-        address: "Meetup city",
-        description: "Description of meetup",
+        id: selectedMeetup._id.toString(),
+        title: selectedMeetup.title,
+        address: selectedMeetup.title,
+        image: selectedMeetup.image,
+        description: selectedMeetup.description,
       },
     },
   };
