@@ -1,10 +1,18 @@
 import { MongoClient } from "mongodb";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 import MeetupList from "../components/meetups/MeetupList";
 
 const Home = (props) => {
   return (
     <>
+      <Head>
+        <title>Next Js Meetup</title>
+        <meta
+          name="description"
+          content="This is a demo app built with Next Js, React and Mongo Db"
+        />
+      </Head>
       <MeetupList meetups={props.meetups} />
     </>
   );
