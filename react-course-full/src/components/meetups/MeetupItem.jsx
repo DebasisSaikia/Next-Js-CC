@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
+import FavoritesContext from "../../store/fav-context";
 import Card from "../utils/Card";
 import styles from "./meetupitem.module.css";
 
-const MeetupItem = ({ image, title, address, description }) => {
+const MeetupItem = ({ image, title, address, description, id }) => {
+  const favoritesCTX = useContext(FavoritesContext);
+  const itemIsFav = favoritesCTX.itemIsfavorite(id);
+
+  const toggleFav = () => {
+    // if (itemIsFav) {
+    //   favoritesCTX.removeFavorite(id);
+    // } else {
+    //   favoritesCTX.addFavorite({
+    //     image,
+    //     title,
+    //     address,
+    //     description,
+    //     id,
+    //   });
+    // }
+  };
+
   return (
     <li className={styles.item}>
       <Card>
@@ -16,7 +34,7 @@ const MeetupItem = ({ image, title, address, description }) => {
         </div>
 
         <div className={styles.actions}>
-          <button>To Favourates</button>
+          <button onClick={toggleFav}>To Favorites</button>
         </div>
       </Card>
     </li>
