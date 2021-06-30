@@ -29,6 +29,14 @@ export async function getStaticProps({ params }) {
         content_type: 'food',
         'fields.slug': params.slug
     })
+    if (!items.length) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+        }
+    }
     return {
         props: { food: items[0] },
         revalidate: 1
