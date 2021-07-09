@@ -1,3 +1,30 @@
+import fs from 'fs'
+import path from 'path';
+import matter from 'gray-matter'
+
+const markdownFolder = path.join(process.cwd, 'markdown');
+
+export function getAllDatas() {
+    console.log(markdownFolder);
+    const allDatas = fs.readdirSync(markdownFolder);
+
+    return allDatas.map(fileName => {
+        const slug = fileName.replace('.md', '');
+        const fileContents = fs.readFileSync(
+            path.join(markdownFolder, fileName),
+            'utf-8'
+        )
+
+        const { data, content } = matter(fileContents);
+
+        return {
+            data,
+            content,
+            slug
+        }
+    })
+}
+
 export const blogPost = [
     {
         title: 'First Blog Post',
