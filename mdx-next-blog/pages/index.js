@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import { blogPost } from '../utils/data'
+import Link from 'next/link'
 
 export default function Home() {
 
@@ -14,6 +16,19 @@ export default function Home() {
         <h1>MDX BLOG</h1>
       </main>
 
+      <div>
+        {blogPost.map((blog) => {
+          return (
+            <div key={blog.slug}>
+              <div>
+                <Link href={`/blog/${blog.slug}`} >{blog.title}</Link>
+              </div>
+              <div>{blog.date.toString()}</div>
+              <div>{blog.content}</div>
+            </div>
+          )
+        })}
+      </div>
 
     </div>
   )
