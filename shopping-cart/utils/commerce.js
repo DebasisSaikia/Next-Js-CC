@@ -7,7 +7,7 @@ const getProducts = (commerceKey) => {
     if (commerce) {
         return commerce;
     } else {
-        const checPublicKey = commerceKey || process.env.NEXT_PUBLIC_CHEC_PUBLIC_KEY;
+        const checPublicKey = commerceKey || process.env.NEXT_APP_PUBLIC_KEY;
         const devEnvironment = process.env.NODE_ENV === 'development';
 
         if (devEnvironment && !checPublicKey) {
