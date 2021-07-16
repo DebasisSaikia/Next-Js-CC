@@ -1,7 +1,14 @@
 import Head from 'next/head'
 import Navbar from '../components/Navbar'
+import { getSession, useSession, signIn, signOut } from 'next-auth/client'
+import LoginPage from '../components/LoginPage'
 
-export default function Home() {
+export default function Home({ session }) {
+  // const [session] = useSession()
+
+  // !session && <LoginPage />
+  if (!session) return <LoginPage />
+
   return (
     <div >
       <Head>
@@ -17,4 +24,13 @@ export default function Home() {
       </main>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+  return {
+    props: {
+      session
+    }
+  }
 }

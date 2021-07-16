@@ -2,7 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 import { BellIcon, ChatIcon, ChevronDownIcon, HomeIcon, UserGroupIcon, ViewGridIcon } from '@heroicons/react/solid';
 import { FlagIcon, PlayIcon, SearchIcon, ShoppingCartIcon } from '@heroicons/react/outline'
-import SharedIcons from './SharedIcons';
 
 const Navbar = () => {
     return (
@@ -34,11 +33,12 @@ const Navbar = () => {
             {/* right icons */}
             <div className="flex items-center sm:space-x-2 justify-end">
                 {/* profile */}
-                <p className="font-semibold whitespace-nowrap pr-3">Debasis</p>
+
                 <ViewGridIcon className="icon xl: inline-flex" />
                 <ChatIcon className="icon xl: inline-flex" />
                 <BellIcon className="icon xl: inline-flex" />
                 <ChevronDownIcon className="icon xl: inline-flex" />
+                <p className="font-semibold whitespace-nowrap pr-3">Debasis</p>
             </div>
         </div>
     )
