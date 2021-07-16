@@ -2,12 +2,15 @@ import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import { getSession, useSession, signIn, signOut } from 'next-auth/client'
 import LoginPage from '../components/LoginPage'
+import Sidebar from '../components/Sidebar'
+import Feeds from '../components/Feeds'
 
 export default function Home({ session }) {
   // const [session] = useSession()
 
   // !session && <LoginPage />
   if (!session) return <LoginPage />
+  console.log(session)
 
   return (
     <div >
@@ -19,8 +22,9 @@ export default function Home({ session }) {
 
       <Navbar />
 
-      <main >
-        <h1>Facebook Clone</h1>
+      <main className="flex" >
+        <Sidebar />
+        <Feeds />
       </main>
     </div>
   )

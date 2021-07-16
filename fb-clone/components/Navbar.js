@@ -2,8 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 import { BellIcon, ChatIcon, ChevronDownIcon, HomeIcon, UserGroupIcon, ViewGridIcon } from '@heroicons/react/solid';
 import { FlagIcon, PlayIcon, SearchIcon, ShoppingCartIcon } from '@heroicons/react/outline'
+import { useSession, signOut } from 'next-auth/client';
 
 const Navbar = () => {
+
+    const [session] = useSession()
     return (
         <div className="sticky top-0 z-50 bg-white flex items-center p-2 lg:px-5 shadow-md">
 
@@ -33,12 +36,13 @@ const Navbar = () => {
             {/* right icons */}
             <div className="flex items-center sm:space-x-2 justify-end">
                 {/* profile */}
-
+                <Image width={40} height={40} alt={session.user.name} src={session.user.image} className="rounded-full cursor-pointer" onClick={signOut} />
+                <p className="sm:text-sm lg:text-md md:font-semibold whitespace-nowrap pr-3">{session.user.name}</p>
                 <ViewGridIcon className="icon xl: inline-flex" />
                 <ChatIcon className="icon xl: inline-flex" />
                 <BellIcon className="icon xl: inline-flex" />
                 <ChevronDownIcon className="icon xl: inline-flex" />
-                <p className="font-semibold whitespace-nowrap pr-3">Debasis</p>
+
             </div>
         </div>
     )
