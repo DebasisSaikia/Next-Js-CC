@@ -22,7 +22,10 @@ const options = {
         //     },
         //     form: ''
         // })
-    ]
+    ],
+    pages: {
+        signIn: '/signin'
+    }
 }
 
 export default (req, res) => NextAuth(req, res, options)

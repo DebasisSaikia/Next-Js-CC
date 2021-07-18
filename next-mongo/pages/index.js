@@ -61,6 +61,7 @@ export default function Home() {
           {session && (
             <>
               Signed in as {session.user.email}<br />
+              <Link href='/secret'>Private Page</Link><br />
               <button onClick={signOut} className="bg-black text-white px-4 py-2 rounded-md hover:text-gray-200">Sign Out</button>
             </>
           )}
