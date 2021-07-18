@@ -20,7 +20,7 @@ import { useSession, signIn, signOut } from 'next-auth/client'
 export default function Home() {
 
   const [session, loading] = useSession()
-
+  console.log(session)
 
 
   return (
