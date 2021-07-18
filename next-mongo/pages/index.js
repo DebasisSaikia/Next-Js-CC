@@ -1,21 +1,22 @@
 import Head from 'next/head'
+import { dbConnect, jsonify } from '../middlewares/db'
 // import { blogPost } from '../utils/data'
 import Link from 'next/link'
+import Meetup from '../models/meetup'
 
-export function getServerSideProps(context) {
-  return {
-    props: {
-      meetups: [
-        {
-          title: 'conor',
-          description: 'McGregor'
-        }
-      ]
-    }
-  }
-}
+// export async function getServerSideProps(context) {
 
-export default function Home({ meetups }) {
+//   dbConnect()
+//   const meetups = await Meetup.find({}).exec();
+
+//   return {
+//     props: {
+//       meetups: jsonify(meetups)
+//     }
+//   }
+// }
+
+export default function Home() {
 
   return (
     <div >
@@ -38,11 +39,14 @@ export default function Home({ meetups }) {
               </div>
             )
           })} */}
-          {meetups.map(meetup => {
-            return (
-              <li key={meetup.id}>{meetup.title} | {meetup.description}</li>
-            )
-          })}
+          {/* <ul className="text-xl font-semibold">
+            {meetups.map(meetup => {
+              return (
+                <li key={meetup.id}>{meetup.title} | {meetup.description}</li>
+              )
+            })}
+          </ul> */}
+          <h1>Next Auth</h1>
         </div>
       </main>
 
