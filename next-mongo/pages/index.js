@@ -3,6 +3,7 @@ import { dbConnect, jsonify } from '../middlewares/db'
 // import { blogPost } from '../utils/data'
 import Link from 'next/link'
 import Meetup from '../models/meetup'
+import { useSession, signIn, signOut } from 'next-auth/client'
 
 // export async function getServerSideProps(context) {
 
@@ -17,6 +18,10 @@ import Meetup from '../models/meetup'
 // }
 
 export default function Home() {
+
+  const [session, loading] = useSession()
+
+
 
   return (
     <div >
@@ -46,7 +51,19 @@ export default function Home() {
               )
             })}
           </ul> */}
-          <h1>Next Auth</h1>
+          {!session && (
+            <>
+              Cannot access this page .
+              <button onClick={signIn} className="bg-red-500 text-white px-4 py-2 rounded-md hover:text-gray-200">Sign in</button>
+            </>
+          )}
+
+          {session && (
+            <>
+              Signed in as {session.user.email}<br />
+              <button onClick={signOut} className="bg-black text-white px-4 py-2 rounded-md hover:text-gray-200">Sign Out</button>
+            </>
+          )}
         </div>
       </main>
 
