@@ -16,6 +16,7 @@ const Post = ({ name, message, email, timestamp, image, postImage }) => {
 
                 <p className="pt-4">{message}</p>
             </div>
+            {!postImage && <h1>Loading....</h1>}
             {postImage && (
                 <div className="relative h-56 md:h-96 bg-white">
                     <Image alt={`post by ${name}`} src={postImage} objectFit="contain" layout="fill" />

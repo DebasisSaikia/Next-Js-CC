@@ -3,7 +3,7 @@ import { db } from "../firebase";
 import Post from './Post';
 
 const Posts = () => {
-    const [realtimePosts] = useCollection(
+    const [realtimePosts, loading] = useCollection(
         db.collection('posts').orderBy('timestamp', 'desc')
     )
     return (
@@ -15,6 +15,8 @@ const Posts = () => {
                     postImage={post.data().postImage}
                 />
             })}
+
+            {loading && <h1>Loading...</h1>}
         </div>
     )
 }

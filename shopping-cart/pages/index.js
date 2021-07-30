@@ -1,3 +1,4 @@
+import { Link } from '@material-ui/core'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
@@ -14,13 +15,19 @@ export default function Home({ products }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main >
+      <main className="grid grid-cols-4 mx-auto py-10 w-full">
         {products.map((product) => {
           return (
-            <div key={product.id}>
-              <img src={product.media.source} alt={product.name} />
-              <p>{product.name}</p>
-              <p>{product.price.formatted_with_symbol}</p>
+            <div key={product.id} className="mx-auto cursor-pointer w-50 h-70 shadow-md border-blue-200">
+              <div >
+                <Link href={`products/${product.id}`}>
+                  <img src={product.media.source} alt={product.name} className="w-40 h-50 cursor-pointer" />
+                </Link>
+
+                <p>{product.name}</p>
+                <p>{product.price.formatted_with_symbol}</p>
+              </div>
+
             </div>
           )
         })}

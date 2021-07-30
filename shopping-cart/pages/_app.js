@@ -3,15 +3,28 @@ import '../styles/globals.css'
 import nProgress from 'nprogress'
 import 'nprogress/nprogress.css';
 import Router from 'next/router'
+import { useEffect } from 'react';
+import Layout from '../components/Layout';
 
 Router.events.on('routeChangeStart', () => nProgress.start());
 Router.events.on('routeChangeComplete', () => nProgress.done())
 Router.events.on('routeChangeError', () => nProgress.done())
 
 function MyApp({ Component, pageProps }) {
+
+  useEffect(() => {
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement.remove(jssStyles)
+    }
+  }, [])
+
   return (
     <StoreProvider>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+
     </StoreProvider>
   )
 }
